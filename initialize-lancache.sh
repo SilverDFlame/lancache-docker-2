@@ -213,6 +213,7 @@ sed -i "s|lc-host-zenimax|$lc_ip_zenimax|g" $lc_base_folder/temp/interfaces
 sed -i "s|lc-host-digitalextremes|$lc_ip_digitalextremes|g" $lc_base_folder/temp/interfaces
 sed -i "s|lc-host-pearlabyss|$lc_ip_pearlabyss|g" $lc_base_folder/temp/interfaces
 sed -i "s|lc-host-netmask|$lc_eth_netmask|g" $lc_base_folder/temp/interfaces
+sed -i "s|lc-host-vint|$( cat $lc_base_folder/config/interface_used )|g" $lc_base_folder/temp/interfaces
 
 ## Preparing configuration for unbound
 cp ./data/unbound.conf $lc_base_folder/temp/unbound/
