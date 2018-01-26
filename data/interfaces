@@ -90,19 +90,19 @@ auto lc-host-vint:14
     netmask lc-host-netmask
     
 # IP used for ZeniMax caching
-auto eth0:15
+auto lc-host-vint:15
     iface lc-host-vint:15 inet static
     address lc-host-zenimax
     netmask lc-host-netmask
     
 # IP used for digitalextremes caching
-auto eth0:16
+auto lc-host-vint:16
     iface lc-host-vint:16 inet static
     address lc-host-digitalextremes
     netmask lc-host-netmask
     
 # IP used for pearlabyss caching
-auto eth0:17
+auto lc-host-vint:17
     iface lc-host-vint:17 inet static
     address lc-host-pearlabyss
     netmask lc-host-netmask

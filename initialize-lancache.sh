@@ -171,71 +171,71 @@ fi
 
 ## Make the Necessary Changes For The New Host File
 cp ./data/hosts $lc_base_folder/temp/hosts
-sed -i "s|lc-hostname|$lc_hn|g" $lc_base_folder/temp/hosts
-sed -i "s|lc-host-proxybind|$HOST_IP|g" $lc_base_folder/temp/hosts
-sed -i "s|lc-host-arena|$lc_ip_arena|g" $lc_base_folder/temp/hosts
 sed -i "s|lc-host-apple|$lc_ip_apple|g" $lc_base_folder/temp/hosts
+sed -i "s|lc-host-arena|$lc_ip_arena|g" $lc_base_folder/temp/hosts
 sed -i "s|lc-host-blizzard|$lc_ip_blizzard|" $lc_base_folder/temp/hosts
-sed -i "s|lc-host-hirez|$lc_ip_hirez|g" $lc_base_folder/temp/hosts
+sed -i "s|lc-host-digitalextremes|$lc_ip_digitalextremes|g" $lc_base_folder/temp/hosts
+sed -i "s|lc-host-enmasse|$lc_ip_enmasse|g" $lc_base_folder/temp/hosts
 sed -i "s|lc-host-glyph|$lc_ip_glyph|" $lc_base_folder/temp/hosts
 sed -i "s|lc-host-gog|$lc_ip_gog|g" $lc_base_folder/temp/hosts
+sed -i "s|lc-host-hirez|$lc_ip_hirez|g" $lc_base_folder/temp/hosts
 sed -i "s|lc-host-microsoft|$lc_ip_microsoft|g" $lc_base_folder/temp/hosts
 sed -i "s|lc-host-origin|$lc_ip_origin|g" $lc_base_folder/temp/hosts
+sed -i "s|lc-host-pearlabyss|$lc_ip_pearlabyss|g" $lc_base_folder/temp/hosts
+sed -i "s|lc-host-proxybind|$HOST_IP|g" $lc_base_folder/temp/hosts
 sed -i "s|lc-host-riot|$lc_ip_riot|g" $lc_base_folder/temp/hosts
-sed -i "s|lc-host-steam|$lc_ip_steam|g" $lc_base_folder/temp/hosts
 sed -i "s|lc-host-sony|$lc_ip_sony|g" $lc_base_folder/temp/hosts
-sed -i "s|lc-host-enmasse|$lc_ip_enmasse|g" $lc_base_folder/temp/hosts
+sed -i "s|lc-host-steam|$lc_ip_steam|g" $lc_base_folder/temp/hosts
 sed -i "s|lc-host-uplay|$lc_ip_uplay|g" $lc_base_folder/temp/hosts
 sed -i "s|lc-host-wargaming|$lc_ip_wargaming|g" $lc_base_folder/temp/hosts
 sed -i "s|lc-host-zenimax|$lc_ip_zenimax|g" $lc_base_folder/temp/hosts
-sed -i "s|lc-host-digitalextremes|$lc_ip_digitalextremes|g" $lc_base_folder/temp/hosts
-sed -i "s|lc-host-pearlabyss|$lc_ip_pearlabyss|g" $lc_base_folder/temp/hosts
+sed -i "s|lc-hostname|$lc_hn|g" $lc_base_folder/temp/hosts
 
 
 ## Make the Necessary Changes For The New Interfaces File
 cp ./data/interfaces $lc_base_folder/temp/interfaces
-sed -i "s|lc-host-ip|$HOST_IP|g" $lc_base_folder/temp/interfaces
-sed -i "s|lc-host-arena|$lc_ip_arena|g" $lc_base_folder/temp/interfaces
 sed -i "s|lc-host-apple|$lc_ip_apple|g" $lc_base_folder/temp/interfaces
+sed -i "s|lc-host-arena|$lc_ip_arena|g" $lc_base_folder/temp/interfaces
 sed -i "s|lc-host-blizzard|$lc_ip_blizzard|g" $lc_base_folder/temp/interfaces
-sed -i "s|lc-host-hirez|$lc_ip_hirez|g" $lc_base_folder/temp/interfaces
-sed -i "s|lc-host-gog|$lc_ip_gog|g" $lc_base_folder/temp/interfaces
-sed -i "s|lc-host-glyph|$lc_ip_glyph|g" $lc_base_folder/temp/interfaces
-sed -i "s|lc-host-microsoft|$lc_ip_microsoft|g" $lc_base_folder/temp/interfaces
-sed -i "s|lc-host-origin|$lc_ip_origin|g" $lc_base_folder/temp/interfaces
-sed -i "s|lc-host-riot|$lc_ip_riot|g" $lc_base_folder/temp/interfaces
-sed -i "s|lc-host-steam|$lc_ip_steam|g" $lc_base_folder/temp/interfaces
-sed -i "s|lc-host-sony|$lc_ip_sony|g" $lc_base_folder/temp/interfaces
+sed -i "s|lc-host-digitalextremes|$lc_ip_digitalextremes|g" $lc_base_folder/temp/interfaces
 sed -i "s|lc-host-enmasse|$lc_ip_enmasse|g" $lc_base_folder/temp/interfaces
+sed -i "s|lc-host-glyph|$lc_ip_glyph|g" $lc_base_folder/temp/interfaces
+sed -i "s|lc-host-gog|$lc_ip_gog|g" $lc_base_folder/temp/interfaces
+sed -i "s|lc-host-hirez|$lc_ip_hirez|g" $lc_base_folder/temp/interfaces
+sed -i "s|lc-host-ip|$HOST_IP|g" $lc_base_folder/temp/interfaces
+sed -i "s|lc-host-microsoft|$lc_ip_microsoft|g" $lc_base_folder/temp/interfaces
+sed -i "s|lc-host-netmask|$lc_eth_netmask|g" $lc_base_folder/temp/interfaces
+sed -i "s|lc-host-origin|$lc_ip_origin|g" $lc_base_folder/temp/interfaces
+sed -i "s|lc-host-pearlabyss|$lc_ip_pearlabyss|g" $lc_base_folder/temp/interfaces
+sed -i "s|lc-host-riot|$lc_ip_riot|g" $lc_base_folder/temp/interfaces
+sed -i "s|lc-host-sony|$lc_ip_sony|g" $lc_base_folder/temp/interfaces
+sed -i "s|lc-host-steam|$lc_ip_steam|g" $lc_base_folder/temp/interfaces
 sed -i "s|lc-host-uplay|$lc_ip_uplay|g" $lc_base_folder/temp/interfaces
+sed -i "s|lc-host-vint|$( cat $lc_base_folder/config/interface_used )|g" $lc_base_folder/temp/interfaces
 sed -i "s|lc-host-wargaming|$lc_ip_wargaming|g" $lc_base_folder/temp/interfaces
 sed -i "s|lc-host-zenimax|$lc_ip_zenimax|g" $lc_base_folder/temp/interfaces
-sed -i "s|lc-host-digitalextremes|$lc_ip_digitalextremes|g" $lc_base_folder/temp/interfaces
-sed -i "s|lc-host-pearlabyss|$lc_ip_pearlabyss|g" $lc_base_folder/temp/interfaces
-sed -i "s|lc-host-netmask|$lc_eth_netmask|g" $lc_base_folder/temp/interfaces
-sed -i "s|lc-host-vint|$( cat $lc_base_folder/config/interface_used )|g" $lc_base_folder/temp/interfaces
 
 ## Preparing configuration for unbound
 cp ./data/unbound.conf $lc_base_folder/temp/unbound/
-sed -i "s|lc-host-ip|$HOST_IP|g" $lc_base_folder/temp/unbound/unbound.conf
-sed -i "s|lc-host-proxybind|$HOST_IP|g" $lc_base_folder/temp/unbound/unbound.conf
-sed -i "s|lc-host-arena|$lc_ip_arena|g" $lc_base_folder/temp/unbound/unbound.conf
 sed -i "s|lc-host-apple|$lc_ip_apple|g" $lc_base_folder/temp/unbound/unbound.conf
+sed -i "s|lc-host-arena|$lc_ip_arena|g" $lc_base_folder/temp/unbound/unbound.conf
 sed -i "s|lc-host-blizzard|$lc_ip_blizzard|g" $lc_base_folder/temp/unbound/unbound.conf
-sed -i "s|lc-host-hirez|$lc_ip_hirez|g" $lc_base_folder/temp/unbound/unbound.conf
-sed -i "s|lc-host-gog|$lc_ip_gog|g" $lc_base_folder/temp/unbound/unbound.conf
+sed -i "s|lc-host-digitalextremes|$lc_ip_digitalextremes|g" $lc_base_folder/temp/unbound/unbound.conf
+sed -i "s|lc-host-enmasse|$lc_ip_enmasse|g" $lc_base_folder/temp/unbound/unbound.conf
 sed -i "s|lc-host-glyph|$lc_ip_glyph|g" $lc_base_folder/temp/unbound/unbound.conf
+sed -i "s|lc-host-gog|$lc_ip_gog|g" $lc_base_folder/temp/unbound/unbound.conf
+sed -i "s|lc-host-hirez|$lc_ip_hirez|g" $lc_base_folder/temp/unbound/unbound.conf
+sed -i "s|lc-host-ip|$HOST_IP|g" $lc_base_folder/temp/unbound/unbound.conf
 sed -i "s|lc-host-microsoft|$lc_ip_microsoft|g" $lc_base_folder/temp/unbound/unbound.conf
 sed -i "s|lc-host-origin|$lc_ip_origin|g" $lc_base_folder/temp/unbound/unbound.conf
-sed -i "s|lc-host-riot|$lc_ip_riot|g" $lc_base_folder/temp/unbound/unbound.conf
-sed -i "s|lc-host-steam|$lc_ip_steam|g" $lc_base_folder/temp/unbound/unbound.conf
-sed -i "s|lc-host-sony|$lc_ip_sony|g" $lc_base_folder/temp/unbound/unbound.conf
-sed -i "s|lc-host-enmasse|$lc_ip_enmasse|g" $lc_base_folder/temp/unbound/unbound.conf
-sed -i "s|lc-host-wargaming|$lc_ip_wargaming|g" $lc_base_folder/temp/unbound/unbound.conf
-sed -i "s|lc-host-uplay|$lc_ip_uplay|g" $lc_base_folder/temp/unbound/unbound.conf
-sed -i "s|lc-host-zenimax|$lc_ip_zenimax|g" $lc_base_folder/temp/unbound/unbound.conf
-sed -i "s|lc-host-digitalextremes|$lc_ip_digitalextremes|g" $lc_base_folder/temp/unbound/unbound.conf
 sed -i "s|lc-host-pearlabyss|$lc_ip_pearlabyss|g" $lc_base_folder/temp/unbound/unbound.conf
+sed -i "s|lc-host-proxybind|$HOST_IP|g" $lc_base_folder/temp/unbound/unbound.conf
+sed -i "s|lc-host-riot|$lc_ip_riot|g" $lc_base_folder/temp/unbound/unbound.conf
+sed -i "s|lc-host-sony|$lc_ip_sony|g" $lc_base_folder/temp/unbound/unbound.conf
+sed -i "s|lc-host-steam|$lc_ip_steam|g" $lc_base_folder/temp/unbound/unbound.conf
+sed -i "s|lc-host-uplay|$lc_ip_uplay|g" $lc_base_folder/temp/unbound/unbound.conf
+sed -i "s|lc-host-wargaming|$lc_ip_wargaming|g" $lc_base_folder/temp/unbound/unbound.conf
+sed -i "s|lc-host-zenimax|$lc_ip_zenimax|g" $lc_base_folder/temp/unbound/unbound.conf
 
 ## Moving Base Files to The Correct Locations
 if [ -f "$lc_base_folder/temp/hosts" ]; then
