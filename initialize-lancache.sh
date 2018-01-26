@@ -255,6 +255,7 @@ if [ -f "$lc_base_folder/temp/interfaces" ]; then
 fi
 
 if [ -f "$lc_base_folder/temp/unbound" ]; then
+    sudo mv ./data/unbound.conf ./data/unbound.conf.bak
 	yes | cp $lc_base_folder/temp/unbound/unbound.conf ./data/unbound.conf
 	else
 	echo Could not find "$lc_base_folder/temp/unbound". Exiting.
