@@ -9,18 +9,18 @@ The idea behind this project was to supply an easy to use deployment of a Lancac
 Good question! A Lancache is a server that will keep a copy/clone of files downloaded from a game's CDN server and store a copy of it for future use. This includes patches and DLC files. Once a file is requested again, whether by the original system, or a new one on the network, it will check if a copy exists, and if it does, serve it up from the cache, versus downloading again from the network.
 
 ## What gets cached?
-    * Steam
-    * RIOT
-    * Blizard
-    * Hirez
-    * Origin
-    * Sony
-    * Microsoft
-    * Tera
-    * GOG
     * ArenaNetworks
-    * WarGaming
+    * Blizard
+    * GOG
+    * Hirez
+    * Microsoft
+    * Origin
+    * RIOT
+    * Sony
+    * Steam
+    * Tera
     * Uplay
+    * WarGaming
     * Plus a couple others!
 ## Other features
 This lancache also spins up an instance of Unbound DNS Resolver. Unbound will cache requests from the network, and resolve them versus having to use an outside DNS resolver. This will eventually allow faster DNS queries on the network.
