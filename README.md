@@ -29,7 +29,7 @@ This Lancache also spins up an instance of Unbound DNS Resolver. Unbound will ca
 ## How do I use this?
 Clone down this repo onto a ***CLEAN*** install of a server of your choice! _This was tested on Ubuntu 17.04 LTS._
 
-Run the following:
+Navigate to the clone and run the following:
 ```
 chmod +x initialize-lancache.sh
 ./initialize-lancache.sh
