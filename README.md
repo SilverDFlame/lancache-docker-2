@@ -1,7 +1,7 @@
 # Lancache Docker 2
 An easy to use lancache made in Docker!
 
-This project is an amalgamation between [Bntjah's Lanchache](https://github.com/bntjah/lancache) and [RyanEwan's lancache-docker](https://github.com/RyanEwen/lan-cache-docker).
+This project is an amalgamation between [Bntjah's Lanchache](https://github.com/bntjah/lancache) and [RyanEwan's lancache-docker](https://github.com/RyanEwen/lan-cache-docker). Big shout-out and thanks to the two of them and their communities for laying the groundwork of this project.
 
 The idea behind this project was to supply an easy to use deployment of a Lancache, that, since it runs inside of Docker containers, is environment agnostic and should "just work".
 
@@ -29,8 +29,16 @@ This Lancache also spins up an instance of Unbound DNS Resolver. Unbound will ca
 ## How do I use this?
 Clone down this repo onto a ***CLEAN*** install of a server of your choice! _This was tested on Ubuntu 17.04 LTS._
 
+<<<<<<< HEAD
 Navigate to the clone and run the following:
 ```
 chmod +x initialize-lancache.sh
 ./initialize-lancache.sh
 ```
+=======
+Run the following:
+```
+chmod +x initialize-lancache.sh
+./initialize-lancache.sh
+```
+>>>>>>> develop
