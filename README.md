@@ -27,18 +27,11 @@ Good question! A Lancache is a server that will keep a copy/clone of files downl
 This Lancache also spins up an instance of Unbound DNS Resolver. Unbound will cache requests from the network, and resolve them versus having to use an outside DNS resolver. This should eventually allow faster DNS queries on the network.
 
 ## How do I use this?
-Clone down this repo onto a ***CLEAN*** install of a server of your choice! _This was tested on Ubuntu 17.04 LTS._
+Clone down this repo onto a ***CLEAN*** install of a server of your choice! _This was tested on Ubuntu 17.10 Latest, and uses the new NetPlan service for configuring networks._
+I _strongly_ recommend reading through the initialization script so you understand what is going to happen.
 
-<<<<<<< HEAD
 Navigate to the clone and run the following:
 ```
 chmod +x initialize-lancache.sh
 ./initialize-lancache.sh
 ```
-=======
-Run the following:
-```
-chmod +x initialize-lancache.sh
-./initialize-lancache.sh
-```
->>>>>>> develop
