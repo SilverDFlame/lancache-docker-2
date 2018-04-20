@@ -95,10 +95,10 @@ get_ip() {
             rm -rf $lc_base_folder/config/interface_used
         fi
 
-        echo Please enter the interface to use:
+        echo "(Please enter the interface to use)"
         echo The interfaces on this machine are:
         echo "$lc_list_int"
-        read -r -p "Selected Interface is:" lc_input
+        read -r -p "Selected Interface:" lc_input
         echo You have entered: "$lc_input"
         lc_input_interface=$lc_input
         echo
@@ -141,17 +141,18 @@ get_ip() {
 }
 
 confirm_ip() {
-    while false; do
-    echo What should the new IP be?
-    read -r new_ip
+    ip_confirmed="false"
+    until [ $ip_confirmed = "true" ]; do
+    echo
+    read -r -p "What should the new IP be?" new_ip
     echo The IP will be set to: "$new_ip"
     read -r -p "Does this IP look correct?" ip_confirmation
     if [[ $ip_confirmation =~ ^([yY][eE][sS]|[yY])$ ]]
     then
+        ip_confirmed="true"
         export HOST_IP=$new_ip
-        return
     else
-        false
+        ip_confirmed="false"
     fi
     done
 }
