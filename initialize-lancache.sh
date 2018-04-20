@@ -58,7 +58,7 @@ echo "##"
 echo "## -------------------------"
 echo
 
-latest_compose_url=$(curl -s -L https://github.com/docker/compose/releases/latest | grep -E -o "/docker/compose/releases/download/[0-9\.]*/docker-compose-$(uname -s)-$(uname -m)")
+latest_compose_url=$(curl -s -L https://github.com/docker/compose/releases/latest | grep -m 1 -E -o "/docker/compose/releases/download/[0-9\.]*/docker-compose-$(uname -s)-$(uname -m)")
 sudo echo $latest_compose_url
 sudo curl -o /usr/local/bin/docker-compose -L "http://www.github.com$latest_compose_url"
 sudo chmod +x /usr/local/bin/docker-compose
