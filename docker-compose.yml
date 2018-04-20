@@ -21,11 +21,11 @@ services:
     - "80:80"
     volumes:
     - ./docker-nginx/start-nginx.sh:/usr/bin/start-nginx.sh
-    - ./data/nginx.conf:/etc/nginx/nginx.conf
+    - ./lancache/conf/nginx.conf:/etc/nginx/nginx.conf
     - ./data/cache:/cache
     - ./data/logs:/var/log/nginx
-    - ./data/lancache:/etc/nginx/lancache
-    - ./data/vhosts-enabled:/etc/nginx/vhosts-enabled
+    - ./lancache/conf/lancache:/etc/nginx/lancache
+    - ./lancache/conf/vhosts-enabled:/etc/nginx/vhosts-enabled
     restart: unless-stopped
 
   sniproxy:

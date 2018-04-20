@@ -232,6 +232,15 @@ fi
 
 echo "## -------------------------"
 echo "##"
+echo "## update proxy-bind in vhosts-enabled file"
+echo "##"
+echo "## -------------------------"
+echo
+## Change the Proxy Bind in Lancache Configs
+sed -i 's|lc-host-proxybind|'$lc_ip'|g' ./lancache/conf/vhosts-enabled/*.conf
+
+echo "## -------------------------"
+echo "##"
 echo "## Make the Necessary Changes For The New Host File"
 echo "##"
 echo "## -------------------------"
@@ -338,13 +347,33 @@ if [ -f "$lc_base_folder/temp/interfaces" ]; then
 	exit 1
 fi
 
+
 if [ -f "$lc_base_folder/temp/unbound" ]; then
-    sudo mv ./data/unbound.conf ./data/unbound.conf.bak
-	yes | cp $lc_base_folder/temp/unbound/unbound.conf ./data/unbound.conf
+    sudo mv ./lancache/unbound/unbound.conf ./lancache/unbound/unbound.conf.bak
+	yes | cp $lc_base_folder/temp/unbound/unbound.conf ./lancache/unbound/unbound.conf
 	else
 	echo Could not find "$lc_base_folder/temp/unbound". Exiting.
 	exit 1
 fi
+
+## Change Limits of the system for Lancache to work without issues
+if [ -f "./lancache/limits.conf" ]; then
+	sudo mv /etc/security/limits.conf /etc/security/limits.conf.bak
+	sudo cp ./lancache/limits.conf /etc/security/limits.conf
+fi
+
+# Updating local DNS resolvers to Google
+echo "nameserver 8.8.8.8" > /etc/resolv.conf
+echo "nameserver 8.8.4.4" >> /etc/resolv.conf
+
+# Install traffic monitoring tools
+apt-get install nload iftop tcpdump tshark -y
+
+## Clean up temp folder
+rm -rf $lc_base_folder/temp
+
+## Start Docker Containers
+docker-compose up -d --build
 
 echo "## -------------------------"
 echo "##"
