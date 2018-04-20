@@ -24,7 +24,7 @@ echo
 
 if [[ $(apt list --installed | grep nplan) ]]; then
     sudo apt-get install ifupdown -y > /dev/null
-    sudo rm -rf /etc/netplan
+    rm -rf /etc/netplan
     sudo apt-get purge nplan -y >/dev/null
 fi
 
@@ -70,9 +70,9 @@ echo "##"
 echo "## -------------------------"
 echo
 
-sudo mkdir -p $lc_base_folder/config/
-sudo mkdir -p $lc_base_folder/temp
-sudo mkdir -p $lc_base_folder/temp/unbound/
+mkdir -p $lc_base_folder/config/
+mkdir -p $lc_base_folder/temp
+mkdir -p $lc_base_folder/temp/unbound/
 
 echo "## -------------------------"
 echo "##"
@@ -93,9 +93,9 @@ get_ip() {
 
     ## Check if the Interface is defined
     ## If not will ask for the question
-    if [ ! -f "$lc_base_folder/config/interface_used" ]; then
-        if [ -f "$lc_base_folder/config/interface_used" ]; then
-            sudo rm -rf $lc_base_folder/config/interface_used
+    if [ ! "$lc_input_interface" ]; then
+        if [ "$lc_input_interface" ]; then
+            unset $lc_input_interface
         fi
 
         echo "(Please enter the interface to use)"
@@ -103,7 +103,7 @@ get_ip() {
         echo "$lc_list_int"
         read -r -p "Selected Interface: " lc_input
         echo You have entered: "$lc_input"
-        lc_input_interface=$lc_input
+        export lc_input_interface=$lc_input
         echo
         echo Checking if this interface exists...
         echo
@@ -111,11 +111,8 @@ get_ip() {
         ## Built in Check
         interface_check=$( ls /sys/class/net | grep "$lc_input_interface" >/dev/null )
         if $interface_check; then
-            echo It seems that "$lc_input_interface" exists
-            echo "$lc_input_interface"
-            echo Now defining the necessary files
-            sudo echo $lc_input_interface > $lc_base_folder/config/interface_used
             echo [ "$lc_date" ] !!! SUCCESS !!!
+            echo It seems that "$lc_input_interface" exists
             echo The user "$USER" chose the interface: "$lc_input_interface" from the following:
             echo "$lc_list_int"
             echo
@@ -133,7 +130,7 @@ get_ip() {
         fi
     fi
 
-    lc_temp_ip=$(ip addr show dev "$( cat $lc_base_folder/config/interface_used )" | grep 'inet ' | grep -o '[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*' | head -n 1)
+    lc_temp_ip=$(ip addr show dev "$lc_input_interface" | grep 'inet ' | grep -o '[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*' | head -n 1)
     echo Found the following IP address configured: "$lc_temp_ip"
     read -r -p "Do you want to use this IP? " response
     if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]
@@ -311,7 +308,7 @@ sudo sed -i "s|lc-host-riot|$lc_ip_riot|g" $lc_base_folder/temp/interfaces
 sudo sed -i "s|lc-host-sony|$lc_ip_sony|g" $lc_base_folder/temp/interfaces
 sudo sed -i "s|lc-host-steam|$lc_ip_steam|g" $lc_base_folder/temp/interfaces
 sudo sed -i "s|lc-host-uplay|$lc_ip_uplay|g" $lc_base_folder/temp/interfaces
-sudo sed -i "s|lc-host-vint|$( cat $lc_base_folder/config/interface_used )|g" $lc_base_folder/temp/interfaces
+sudo sed -i "s|lc-host-vint|$lc_input_interface|g" $lc_base_folder/temp/interfaces
 sudo sed -i "s|lc-host-wargaming|$lc_ip_wargaming|g" $lc_base_folder/temp/interfaces
 sudo sed -i "s|lc-host-zenimax|$lc_ip_zenimax|g" $lc_base_folder/temp/interfaces
 
