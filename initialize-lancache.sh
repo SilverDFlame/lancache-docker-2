@@ -59,6 +59,7 @@ echo "## -------------------------"
 echo
 
 latest_compose_url=$(curl -s -L https://github.com/docker/compose/releases/latest | grep -E -o "/docker/compose/releases/download/[0-9\.]*/docker-compose-$(uname -s)-$(uname -m)")
+sudo echo $latest_compose_url
 sudo curl -o /usr/local/bin/docker-compose -L "http://www.github.com$latest_compose_url"
 sudo chmod +x /usr/local/bin/docker-compose
 
@@ -381,7 +382,7 @@ fi
 
 # Updating local DNS resolvers to Google
 sudo echo "nameserver 8.8.8.8" >> /etc/resolv.conf
-sudo echo "nameserver 8.8.4.4" >> /etc/resolv.conf
+sudo echo "nameserver 8.8.4.4" >> /etc/resolv.confc
 
 echo "## -------------------------"
 echo "##"
