@@ -1,3 +1,0 @@
-slice 16777216;
-proxy_set_header Range $slice_range;
-include lancache/cache-key-slice;

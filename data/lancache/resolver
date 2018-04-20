@@ -1,2 +1,0 @@
-# Google public DNS servers
-resolver 8.8.8.8 8.8.4.4 ipv6=off;
