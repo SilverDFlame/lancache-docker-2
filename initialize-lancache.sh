@@ -114,7 +114,7 @@ get_ip() {
             echo It seems that "$lc_input_interface" exists
             echo
             echo Now defining the necessary files
-            echo "$lc_input_interface" >$lc_base_folder/config/interface_used
+            sudo echo "$lc_input_interface" > $lc_base_folder/config/interface_used
             echo [ lc_date ] !!! SUCCESS !!!
             echo The user "$USER" chose the following interface: "$lc_input_interface" from "$lc_list_int"
             echo
@@ -381,8 +381,8 @@ if [ -f "./lancache/limits.conf" ]; then
 fi
 
 # Updating local DNS resolvers to Google
-sudo echo "nameserver 8.8.8.8" >> /etc/resolv.conf
-sudo echo "nameserver 8.8.4.4" >> /etc/resolv.confc
+sudo echo "nameserver 8.8.8.8" > /etc/resolv.conf
+sudo echo "nameserver 8.8.4.4" > /etc/resolv.confc
 
 echo "## -------------------------"
 echo "##"
