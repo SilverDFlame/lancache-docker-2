@@ -6,7 +6,7 @@ echo "##"
 echo "## -------------------------"
 echo
 
-lc_base_folder=./data/
+lc_base_folder=./data
 lc_hn=$( hostname )
 lc_eth_netmask=255.255.255.0
 lc_date=$( date +"%m-%d-%y %T" )
@@ -116,7 +116,7 @@ get_ip() {
             echo Now defining the necessary files
             echo "$lc_input_interface" > $lc_base_folder/config/interface_used
             echo [ "$lc_date" ] !!! SUCCESS !!!
-            echo The user "$USER" chose the following interface: "$lc_input_interface" from the following:
+            echo The user "$USER" chose the interface: "$lc_input_interface" from the following:
             echo "$lc_list_int"
             echo
         else
