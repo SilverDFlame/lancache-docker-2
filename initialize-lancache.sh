@@ -159,6 +159,16 @@ confirm_ip() {
 
 echo "## -------------------------"
 echo "##"
+echo "## Update Lancache config from github"
+echo "##"
+echo "## -------------------------"
+echo
+
+git pull --recurse-submodules
+git submodule update --remote --recursive
+
+echo "## -------------------------"
+echo "##"
 echo "## Starting initialize script"
 echo "## Detecting IP"
 echo "##"
