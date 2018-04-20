@@ -1,4 +1,4 @@
 [submodule "lancache"]
 	path = lancache
-    url=git@github.com:bntjah/lancache.git
+    url=https://github.com/bntjah/lancache.git
 	branch = master
