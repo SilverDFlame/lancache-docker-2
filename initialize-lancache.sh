@@ -21,9 +21,9 @@ echo "## -------------------------"
 echo
 
 if [[ $(apt list --installed | grep nplan) ]]; then
-    apt-get install ifupdown -y > /dev/null
-    rm -rf /etc/netplan
-    apt-get purge nplan
+    sudo apt-get install ifupdown -y > /dev/null
+    sudo rm -rf /etc/netplan
+    sudo apt-get purge nplan
 fi
 
 echo "## -------------------------"
@@ -34,7 +34,7 @@ echo "## -------------------------"
 echo
 
 if [ ! -f "/usr/bin/curl" ]; then
-	apt-get install curl -y >/dev/null
+	sudo apt-get install curl -y >/dev/null
 fi
 
 echo "## -------------------------"
@@ -45,8 +45,8 @@ echo "## -------------------------"
 echo
 
 if [ ! -f "/usr/bin/docker" ]; then
-    curl -sSL https://get.docker.com | sudo bash
-    usermod -aG docker "$USER"
+    sudo curl -sSL https://get.docker.com | sudo bash
+    sudo usermod -aG docker "$USER"
 fi
 
 echo "## -------------------------"
@@ -57,8 +57,8 @@ echo "## -------------------------"
 echo
 
 latest_compose_url=$(curl -s -L https://github.com/docker/compose/releases/latest | grep -E -o "/docker/compose/releases/download/[0-9\.]*/docker-compose-$(uname -s)-$(uname -m)")
-curl -o /usr/local/bin/docker-compose -L "http://www.github.com$latest_compose_url"
-chmod +x /usr/local/bin/docker-compose
+sudo curl -o /usr/local/bin/docker-compose -L "http://www.github.com$latest_compose_url"
+sudo chmod +x /usr/local/bin/docker-compose
 
 echo "## -------------------------"
 echo "##"
@@ -67,9 +67,9 @@ echo "##"
 echo "## -------------------------"
 echo
 
-mkdir -p $lc_base_folder/config/
-mkdir -p $lc_base_folder/temp
-mkdir -p $lc_base_folder/temp/unbound/
+sudo mkdir -p $lc_base_folder/config/
+sudo mkdir -p $lc_base_folder/temp
+sudo mkdir -p $lc_base_folder/temp/unbound/
 
 echo "## -------------------------"
 echo "##"
@@ -92,13 +92,13 @@ get_ip() {
     ## If not will ask for the question
     if [ ! -f "$lc_base_folder/config/interface_used" ]; then
         if [ -f "$lc_base_folder/config/interface_used" ]; then
-            rm -rf $lc_base_folder/config/interface_used
+            sudo rm -rf $lc_base_folder/config/interface_used
         fi
 
         echo "(Please enter the interface to use)"
         echo The interfaces on this machine are:
         echo "$lc_list_int"
-        read -r -p "Selected Interface:" lc_input
+        read -r -p "Selected Interface: " lc_input
         echo You have entered: "$lc_input"
         lc_input_interface=$lc_input
         echo
@@ -131,7 +131,7 @@ get_ip() {
 
     lc_temp_ip=$(ip addr show dev "$( cat $lc_base_folder/config/interface_used )" | grep 'inet ' | grep -o '[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*' | head -n 1)
     echo Found the following IP address configured: "$lc_temp_ip"
-    read -p "Do you want to use this IP?" -n 1 -r response
+    read -p "Do you want to use this IP? " -r response
     if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]
     then
         export HOST_IP=$lc_temp_ip
@@ -144,9 +144,9 @@ confirm_ip() {
     ip_confirmed="false"
     until [ $ip_confirmed = "true" ]; do
     echo
-    read -r -p "What should the new IP be?" new_ip
+    read -r -p "What should the new IP be? " new_ip
     echo The IP will be set to: "$new_ip"
-    read -r -p "Does this IP look correct?" ip_confirmation
+    read -r -p "Does this IP look correct? " ip_confirmation
     if [[ $ip_confirmation =~ ^([yY][eE][sS]|[yY])$ ]]
     then
         ip_confirmed="true"
@@ -261,7 +261,7 @@ echo "##"
 echo "## -------------------------"
 echo
 
-cp ./lancache/hosts $lc_base_folder/temp/hosts
+sudo cp ./lancache/hosts $lc_base_folder/temp/hosts
 sed -i "s|lc-host-apple|$lc_ip_apple|g" $lc_base_folder/temp/hosts
 sed -i "s|lc-host-arena|$lc_ip_arena|g" $lc_base_folder/temp/hosts
 sed -i "s|lc-host-blizzard|$lc_ip_blizzard|" $lc_base_folder/temp/hosts
@@ -289,7 +289,7 @@ echo "##"
 echo "## -------------------------"
 echo
 
-cp ./lancache/interfaces $lc_base_folder/temp/interfaces
+sudo cp ./lancache/interfaces $lc_base_folder/temp/interfaces
 sed -i "s|lc-host-apple|$lc_ip_apple|g" $lc_base_folder/temp/interfaces
 sed -i "s|lc-host-arena|$lc_ip_arena|g" $lc_base_folder/temp/interfaces
 sed -i "s|lc-host-blizzard|$lc_ip_blizzard|g" $lc_base_folder/temp/interfaces
@@ -318,7 +318,7 @@ echo "##"
 echo "## -------------------------"
 echo
 
-cp ./lancache/unbound/unbound.conf $lc_base_folder/temp/unbound/
+sudo cp ./lancache/unbound/unbound.conf $lc_base_folder/temp/unbound/
 sed -i "s|lc-host-apple|$lc_ip_apple|g" $lc_base_folder/temp/unbound/unbound.conf
 sed -i "s|lc-host-arena|$lc_ip_arena|g" $lc_base_folder/temp/unbound/unbound.conf
 sed -i "s|lc-host-blizzard|$lc_ip_blizzard|g" $lc_base_folder/temp/unbound/unbound.conf
@@ -383,13 +383,13 @@ echo "nameserver 8.8.8.8" > /etc/resolv.conf
 echo "nameserver 8.8.4.4" >> /etc/resolv.conf
 
 # Install traffic monitoring tools
-apt-get install nload iftop tcpdump tshark -y
+sudo apt-get install nload iftop tcpdump tshark -y
 
 ## Clean up temp folder
-rm -rf $lc_base_folder/temp
+sudo rm -rf $lc_base_folder/temp
 
 ## Start Docker Containers
-docker-compose up -d --build
+sudo docker-compose up -d --build
 
 echo "## -------------------------"
 echo "##"
