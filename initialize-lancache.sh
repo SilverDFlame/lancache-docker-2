@@ -114,7 +114,7 @@ get_ip() {
             echo It seems that "$lc_input_interface" exists
             echo
             echo Now defining the necessary files
-            sudo echo "$lc_input_interface" > $lc_base_folder/config/interface_used
+            echo "$lc_input_interface" > $lc_base_folder/config/interface_used
             echo [ lc_date ] !!! SUCCESS !!!
             echo The user "$USER" chose the following interface: "$lc_input_interface" from "$lc_list_int"
             echo
