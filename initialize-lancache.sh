@@ -21,8 +21,9 @@ echo "## -------------------------"
 echo
 
 if [[ $(apt list --installed | grep nplan) ]]; then
-    sudo apt-get install ifupdown
-    sudo apt-get purge nplan
+    apt-get install ifupdown -y > /dev/null
+    rm -rf /etc/netplan
+    apt-get purge nplan
 fi
 #
 #echo "## -------------------------"
