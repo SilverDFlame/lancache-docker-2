@@ -112,7 +112,7 @@ get_ip() {
         interface_check=$( ls /sys/class/net | grep "$lc_input_interface" >/dev/null )
         if $interface_check; then
             echo It seems that "$lc_input_interface" exists
-            echo
+            echo "$lc_input_interface"
             echo Now defining the necessary files
             sudo echo "$lc_input_interface" | tee -a $lc_base_folder/config/interface_used
             echo [ "$lc_date" ] !!! SUCCESS !!!
