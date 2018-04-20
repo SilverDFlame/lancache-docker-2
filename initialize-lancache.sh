@@ -83,6 +83,7 @@ get_ip() {
     lc_list_int=$( ls /sys/class/net | grep -v lo)
     lc_list_mac=$( cat /sys/class/net/*/address | grep -v 00:00:00:00:00:00 )
     echo The MAC Adresses for all interfaces are:
+    echo
     echo "$lc_list_int"
     echo "$lc_list_mac"
     echo
@@ -95,8 +96,9 @@ get_ip() {
         fi
 
         echo Please enter the interface to use:
-        echo The interfaces on this machine are: "$lc_list_int"
-            read -r lc_input
+        echo The interfaces on this machine are:
+        echo "$lc_list_int"
+        read -r -p "Selected Interface is:" lc_input
         echo You have entered: "$lc_input"
         lc_input_interface=$lc_input
         echo
@@ -106,16 +108,6 @@ get_ip() {
         ## Built in Check
         interface_check=$( ls /sys/class/net | grep "$lc_input_interface" >/dev/null )
         if $interface_check; then
-            echo [ "$lc_date" ] !!! ERROR !!!
-            echo Sorry you have entered a wrong interface...
-            echo
-            echo The user: "$USER" entered the following interface: "$lc_input_interface"
-            echo Wich doesnt exist
-            echo
-            echo These are the available interfaces "$USER" could choose from: "$lc_list_int"
-            echo
-
-        else
             echo It seems that "$lc_input_interface" exists
             echo
             echo Now defining the necessary files
@@ -123,6 +115,17 @@ get_ip() {
             echo [ lc_date ] !!! SUCCESS !!!
             echo The user "$USER" chose the following interface: "$lc_input_interface" from "$lc_list_int"
             echo
+        else
+            echo [ "$lc_date" ] !!! ERROR !!!
+            echo Sorry you have entered a wrong interface...
+            echo
+            echo The user: "$USER" entered the following interface: "$lc_input_interface"
+            echo Wich doesnt exist
+            echo
+            echo These are the available interfaces "$USER" could choose from: "$lc_list_int"
+            echo Please re-run this script.
+            echo
+            break
         fi
     fi
 
