@@ -397,4 +397,4 @@ echo "## Reboot system for network changes to apply"
 echo "##"
 echo "## -------------------------"
 
-reboot
+#reboot
