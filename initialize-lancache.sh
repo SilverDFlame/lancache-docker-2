@@ -342,21 +342,22 @@ sed -i "s|lc-host-zenimax|$lc_ip_zenimax|g" $lc_base_folder/temp/unbound/unbound
 echo "## -------------------------"
 echo "##"
 echo "## Moving Base Files to The Correct Locations"
+echo "## Please provide Sudo privileges"
 echo "##"
 echo "## -------------------------"
 echo
 
 if [ -f "$lc_base_folder/temp/hosts" ]; then
-	mv /etc/hosts /etc/hosts.bak
-	cp $lc_base_folder/temp/hosts /etc/hosts
+	sudo mv /etc/hosts /etc/hosts.bak
+	sudo cp $lc_base_folder/temp/hosts /etc/hosts
 	else
 	echo Could not find "$lc_base_folder/temp/hosts". Exiting.
 	exit 1
 fi
 
 if [ -f "$lc_base_folder/temp/interfaces" ]; then
-	mv /etc/netork/interfaces /etc/netork/interfaces.bak
-	mv $lc_base_folder/temp/interfaces /etc/network/interfaces
+	sudo mv /etc/netork/interfaces /etc/netork/interfaces.bak
+	sudo mv $lc_base_folder/temp/interfaces /etc/network/interfaces
 	else
 	echo Could not find "$lc_base_folder/temp/interfaces". Exiting.
 	exit 1
@@ -364,7 +365,7 @@ fi
 
 
 if [ -f "$lc_base_folder/temp/unbound" ]; then
-    mv ./lancache/unbound/unbound.conf ./lancache/unbound/unbound.conf.bak
+    sudo mv ./lancache/unbound/unbound.conf ./lancache/unbound/unbound.conf.bak
 	yes | cp $lc_base_folder/temp/unbound/unbound.conf ./lancache/unbound/unbound.conf
 	else
 	echo Could not find "$lc_base_folder/temp/unbound". Exiting.
@@ -373,8 +374,8 @@ fi
 
 ## Change Limits of the system for Lancache to work without issues
 if [ -f "./lancache/limits.conf" ]; then
-	mv /etc/security/limits.conf /etc/security/limits.conf.bak
-	cp ./lancache/limits.conf /etc/security/limits.conf
+	sudo mv /etc/security/limits.conf /etc/security/limits.conf.bak
+	sudo cp ./lancache/limits.conf /etc/security/limits.conf
 fi
 
 # Updating local DNS resolvers to Google
