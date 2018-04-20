@@ -20,7 +20,7 @@ echo "##"
 echo "## -------------------------"
 echo
 
-if [apt list --installed | grep nplan]; then
+if [[ $(apt list --installed | grep nplan) ]]; then
     sudo apt-get install ifupdown
     sudo apt-get purge nplan
 fi
