@@ -6,7 +6,7 @@ echo "##"
 echo "## -------------------------"
 echo
 
-lc_base_folder=./data
+lc_base_folder=./data/
 lc_hn=$( hostname )
 lc_eth_netmask=255.255.255.0
 lc_date=$( date +"%m-%d-%y %T" )
