@@ -115,8 +115,9 @@ get_ip() {
             echo
             echo Now defining the necessary files
             echo "$lc_input_interface" > $lc_base_folder/config/interface_used
-            echo [ lc_date ] !!! SUCCESS !!!
-            echo The user "$USER" chose the following interface: "$lc_input_interface" from "$lc_list_int"
+            echo [ "$lc_date" ] !!! SUCCESS !!!
+            echo The user "$USER" chose the following interface: "$lc_input_interface" from the following:
+            echo "$lc_list_int"
             echo
         else
             echo [ "$lc_date" ] !!! ERROR !!!
