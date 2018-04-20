@@ -23,7 +23,7 @@ echo
 if [[ $(apt list --installed | grep nplan) ]]; then
     sudo apt-get install ifupdown -y > /dev/null
     sudo rm -rf /etc/netplan
-    sudo apt-get purge nplan
+    sudo apt-get purge nplan -y >/dev/null
 fi
 
 echo "## -------------------------"
@@ -131,7 +131,7 @@ get_ip() {
 
     lc_temp_ip=$(ip addr show dev "$( cat $lc_base_folder/config/interface_used )" | grep 'inet ' | grep -o '[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*' | head -n 1)
     echo Found the following IP address configured: "$lc_temp_ip"
-    read -p "Do you want to use this IP? " -r response
+    read -r -p "Do you want to use this IP? " response
     if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]
     then
         export HOST_IP=$lc_temp_ip
