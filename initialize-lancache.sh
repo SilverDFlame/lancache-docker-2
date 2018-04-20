@@ -364,11 +364,11 @@ if [ -f "$lc_base_folder/temp/interfaces" ]; then
 fi
 
 
-if [ -f "$lc_base_folder/temp/unbound" ]; then
+if [ -f "$lc_base_folder/temp/unbound/unbound.conf" ]; then
     sudo mv ./lancache/unbound/unbound.conf ./lancache/unbound/unbound.conf.bak
 	yes | cp $lc_base_folder/temp/unbound/unbound.conf ./lancache/unbound/unbound.conf
 	else
-	echo Could not find "$lc_base_folder/temp/unbound". Exiting.
+	echo Could not find "$lc_base_folder/temp/unbound/unbound.conf". Exiting.
 	exit 1
 fi
 
