@@ -58,10 +58,10 @@ sudo echo "##"
 sudo echo "## -------------------------"
 sudo echo
 
-latest_compose_url=$(curl -s -L https://github.com/docker/compose/releases/latest | grep -m 1 -E -o "/docker/compose/releases/download/[0-9\.]*/docker-compose-$(uname -s)-$(uname -m)")
-sudo echo $latest_compose_url
-sudo curl -o /usr/local/bin/docker-compose -L "http://www.github.com$latest_compose_url"
+COMPOSE_VER=$(curl -s -o /dev/null -I -w "%{redirect_url}\n" https://github.com/docker/compose/releases/latest | grep -oP "[0-9]+(\.[0-9]+)+$")
+sudo curl -o /usr/local/bin/docker-compose -L http://github.com/docker/compose/releases/download/$COMPOSE_VER/docker-compose-$(uname -s)-$(uname -m)
 sudo chmod +x /usr/local/bin/docker-compose
+sudo curl -L https://raw.githubusercontent.com/docker/compose/master/contrib/completion/bash/docker-compose -o /etc/bash_completion.d/docker-compose
 
 sudo echo "## -------------------------"
 sudo echo "##"
@@ -339,6 +339,8 @@ sudo sed -i "s|lc-host-steam|$lc_ip_steam|g" $lc_base_folder/temp/unbound/unboun
 sudo sed -i "s|lc-host-uplay|$lc_ip_uplay|g" $lc_base_folder/temp/unbound/unbound.conf
 sudo sed -i "s|lc-host-wargaming|$lc_ip_wargaming|g" $lc_base_folder/temp/unbound/unbound.conf
 sudo sed -i "s|lc-host-zenimax|$lc_ip_zenimax|g" $lc_base_folder/temp/unbound/unbound.conf
+sudo sed -i "s|8.8.8.8|1.1.1.1|g" $lc_base_folder/temp/unbound/unbound.conf
+sudo sed -i "s|8.8.4.4|1.0.0.1|g" $lc_base_folder/temp/unbound/unbound.conf
 
 sudo echo "## -------------------------"
 sudo echo "##"
@@ -378,9 +380,9 @@ if [ -f "./lancache/limits.conf" ]; then
 	sudo cp ./lancache/limits.conf /etc/security/limits.conf
 fi
 
-# Updating local DNS resolvers to Google
-sudo echo "nameserver 8.8.8.8" > /etc/resolv.conf
-sudo echo "nameserver 8.8.4.4" > /etc/resolv.confc
+# Updating local DNS resolvers to CloudFlare
+sudo echo "nameserver 1.1.1.1" >> /etc/resolv.conf
+sudo echo "nameserver 1.0.0.1" >> /etc/resolv.confc
 
 sudo echo "## -------------------------"
 sudo echo "##"
@@ -389,12 +391,15 @@ sudo echo "##"
 sudo echo "## -------------------------"
 sudo echo
 sudo apt-get install nload iftop tcpdump tshark -y
+sudo echo "alias nloadMon='nload -U G -u M -i 102400 -o 102400'" >> ~/.bash_aliases
+sudo echo "alias iftopMon='iftop -i $lc_input_interface'" >> ~/.bash_aliases
+source ~/.bash_aliases
 
 ## Clean up temp folder
 sudo rm -rf $lc_base_folder/temp
 
 ## Start Docker Containers
-sudo docker-compose up -d --build
+docker-compose up -d --build
 
 sudo echo "## -------------------------"
 sudo echo "##"
