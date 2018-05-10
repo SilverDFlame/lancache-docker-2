@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+read -r -p "This script is made to run on Debian. Is this a Debian env?" response
+    if [[ ! "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
+        exit 1
+    fi
+
 echo "## -------------------------"
 echo "##"
 echo "## Setting Variables"
@@ -24,18 +29,41 @@ fi
 
 echo "## -------------------------"
 echo "##"
-echo "## Checking if DOCKER is installed; If not, installing it"
+echo "## Get latest Apt files, and install necessary deps for https"
 echo "##"
 echo "## -------------------------"
 echo
 
-if [ ! -f "/usr/bin/docker" ]; then
-    apt-get install docker-ce
-fi
+apt-get update
+apt-get install \
+     apt-transport-https \
+     ca-certificates \
+     curl \
+     gnupg2 \
+     software-properties-common
 
-# Set User as docker admin
-groupadd docker
-usermod -aG docker $USER
+echo "## -------------------------"
+echo "##"
+echo "## Install latest version of Docker"
+echo "## This will remove any previous versions of Docker"
+echo "##"
+echo "## -------------------------"
+echo
+
+apt-get remove docker docker-engine docker.io docker-ce
+curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
+if [ apt-key fingerprint 0EBFCD88 ]; then
+    add-apt-repository \
+       "deb [arch=amd64] https://download.docker.com/linux/debian \
+       $(lsb_release -cs) \
+       stable"
+
+    apt-get update
+    apt-get install docker-ce
+    # Set User as docker admin
+    groupadd docker
+    usermod -aG docker $USER
+fi
 
 echo "## -------------------------"
 echo "##"
