@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-read -r -p "This script is made to run on Debian. Is this a Debian env?" response
+read -r -p "This script is made to run on Debian. Is this a Debian env? " response
     if [[ ! "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
         exit 1
     fi
@@ -74,9 +74,10 @@ echo "## -------------------------"
 echo
 
 COMPOSE_VER=$(curl -s -o /dev/null -I -w "%{redirect_url}\n" https://github.com/docker/compose/releases/latest | grep -oP "[0-9]+(\.[0-9]+)+$")
-curl -o /usr/local/bin/docker-compose -L http://github.com/docker/compose/releases/download/$COMPOSE_VER/docker-compose-$(uname -s)-$(uname -m)
+echo "The current docker compose version is: " $COMPOSE_VER
+curl -L https://github.com/docker/compose/releases/download/$COMPOSE_VER/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
-curl -L https://raw.githubusercontent.com/docker/compose/master/contrib/completion/bash/docker-compose -o /etc/bash_completion.d/docker-compose
+curl -L https://raw.githubusercontent.com/docker/compose/$COMPOSE_VER/contrib/completion/bash/docker-compose -o /etc/bash_completion.d/docker-compose
 
 echo "## -------------------------"
 echo "##"
