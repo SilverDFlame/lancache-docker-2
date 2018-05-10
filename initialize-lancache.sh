@@ -30,9 +30,12 @@ echo "## -------------------------"
 echo
 
 if [ ! -f "/usr/bin/docker" ]; then
-    curl -sSL https://get.docker.com | bash
-    usermod -aG docker "$USER"
+    apt-get install docker-ce
 fi
+
+# Set User as docker admin
+groupadd docker
+usermod -aG docker $USER
 
 echo "## -------------------------"
 echo "##"
@@ -221,6 +224,8 @@ if [[ -z $HOST_IP ]]; then
     lc_incr_pearlabyss=$((HOST_IP_P4+17))
     export lc_ip_pearlabyss=$HOST_IP_P1.$HOST_IP_P2.$HOST_IP_P3.$lc_incr_pearlabyss
 
+    export lc_host_gateway=$HOST_IP_P1.$HOST_IP_P2.$HOST_IP_P3.1
+
     echo Interface IPs created. Starting IP Assignments
     echo
   else
@@ -279,6 +284,7 @@ sed -i "s|lc-host-arena|$lc_ip_arena|g" $lc_base_folder/temp/interfaces
 sed -i "s|lc-host-blizzard|$lc_ip_blizzard|g" $lc_base_folder/temp/interfaces
 sed -i "s|lc-host-digitalextremes|$lc_ip_digitalextremes|g" $lc_base_folder/temp/interfaces
 sed -i "s|lc-host-enmasse|$lc_ip_enmasse|g" $lc_base_folder/temp/interfaces
+sed -i "s|lc-host-gateway|$lc_host_gateway|g" $lc_base_folder/temp/interfaces
 sed -i "s|lc-host-glyph|$lc_ip_glyph|g" $lc_base_folder/temp/interfaces
 sed -i "s|lc-host-gog|$lc_ip_gog|g" $lc_base_folder/temp/interfaces
 sed -i "s|lc-host-hirez|$lc_ip_hirez|g" $lc_base_folder/temp/interfaces
