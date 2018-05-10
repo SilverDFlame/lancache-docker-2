@@ -25,7 +25,7 @@ echo "## -------------------------"
 echo
 
 if [ ! -f "/usr/bin/curl" ]; then
-	apt-get install curl -y >/dev/null
+	apt install curl -y >/dev/null
 fi
 
 echo "## -------------------------"
@@ -35,8 +35,8 @@ echo "##"
 echo "## -------------------------"
 echo
 
-apt-get update
-apt-get install \
+apt update
+apt install \
      apt-transport-https \
      ca-certificates \
      curl \
@@ -52,13 +52,13 @@ echo "##"
 echo "## -------------------------"
 echo
 
-apt-get remove docker docker-engine docker.io
+apt remove docker docker-engine docker.io
 curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
 if [[ $(apt-key fingerprint 0EBFCD88) ]]; then
     add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
 
-    apt-get update
-    apt-get install docker-ce -y
+    apt update
+    apt install docker-ce -y
     sleep 30
     # Set User as docker admin
     groupadd docker
