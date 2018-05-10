@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-read -r -p "This script is made to run on Debian. Is this a Debian env? " response
+read -r -p "This script is made to run on Debian. Is this a Debian instance? " response
     if [[ ! "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
+        "Exiting as this is not a Debian instance."
         exit 1
     fi
 
@@ -51,7 +52,7 @@ echo "##"
 echo "## -------------------------"
 echo
 
-apt-get remove docker docker-engine docker.io docker-ce
+apt-get remove docker docker-engine docker.io
 curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
 if [[ $(apt-key fingerprint 0EBFCD88) ]]; then
     add-apt-repository \
@@ -60,7 +61,8 @@ if [[ $(apt-key fingerprint 0EBFCD88) ]]; then
        stable"
 
     apt-get update
-    apt-get install docker-ce
+    apt-get install docker-ce -y
+    sleep 30
     # Set User as docker admin
     groupadd docker
     usermod -aG docker $USER
