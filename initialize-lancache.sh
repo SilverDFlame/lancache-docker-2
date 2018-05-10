@@ -401,8 +401,8 @@ if [ -f "./lancache/limits.conf" ]; then
 fi
 
 # Updating local DNS resolvers to CloudFlare
-echo "nameserver 1.1.1.1" >> /etc/resolv.conf
-echo "nameserver 1.0.0.1" >> /etc/resolv.confc
+sed -i "s|8.8.8.8|1.1.1.1|g" /etc/resolv.conf
+sed -i "s|8.8.4.4|1.0.0.1|g" /etc/resolv.conf
 
 echo "## -------------------------"
 echo "##"
