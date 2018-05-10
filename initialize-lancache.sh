@@ -224,7 +224,9 @@ if [[ -z $HOST_IP ]]; then
     lc_incr_pearlabyss=$((HOST_IP_P4+17))
     export lc_ip_pearlabyss=$HOST_IP_P1.$HOST_IP_P2.$HOST_IP_P3.$lc_incr_pearlabyss
 
-    export lc_host_gateway=$HOST_IP_P1.$HOST_IP_P2.$HOST_IP_P3.1
+    # TODO: Uncomment before release!
+    #export lc_host_gateway=$HOST_IP_P1.$HOST_IP_P2.$HOST_IP_P3.1
+    export lc_host_gateway=10.63.192.1
 
     echo Interface IPs created. Starting IP Assignments
     echo
