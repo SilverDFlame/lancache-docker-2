@@ -378,7 +378,7 @@ if [ -f "$lc_base_folder/temp/hosts" ]; then
 fi
 
 if [ -f "$lc_base_folder/temp/interfaces" ]; then
-	mv /etc/netork/interfaces /etc/netork/interfaces.bak
+	mv /etc/network/interfaces /etc/network/interfaces.bak
 	mv $lc_base_folder/temp/interfaces /etc/network/interfaces
 	else
 	echo Could not find "$lc_base_folder/temp/interfaces". Exiting.
