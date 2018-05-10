@@ -40,7 +40,8 @@ apt-get install \
      ca-certificates \
      curl \
      gnupg2 \
-     software-properties-common
+     software-properties-common \
+     -y
 
 echo "## -------------------------"
 echo "##"
@@ -52,7 +53,7 @@ echo
 
 apt-get remove docker docker-engine docker.io docker-ce
 curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
-if [ apt-key fingerprint 0EBFCD88 ]; then
+if [[ $(apt-key fingerprint 0EBFCD88) ]]; then
     add-apt-repository \
        "deb [arch=amd64] https://download.docker.com/linux/debian \
        $(lsb_release -cs) \
