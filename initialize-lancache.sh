@@ -330,6 +330,8 @@ sed -i "s|lc-host-uplay|$lc_ip_uplay|g" $lc_base_folder/temp/interfaces
 sed -i "s|lc-host-vint|$lc_input_interface|g" $lc_base_folder/temp/interfaces
 sed -i "s|lc-host-wargaming|$lc_ip_wargaming|g" $lc_base_folder/temp/interfaces
 sed -i "s|lc-host-zenimax|$lc_ip_zenimax|g" $lc_base_folder/temp/interfaces
+sed -i "s|8.8.8.8|1.1.1.1|g" $lc_base_folder/temp/interfaces
+sed -i "s|8.8.4.4|1.0.0.1|g" $lc_base_folder/temp/interfaces
 
 echo "## -------------------------"
 echo "##"
