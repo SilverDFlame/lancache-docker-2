@@ -46,7 +46,7 @@ apt install \
 echo "## -------------------------"
 echo "##"
 echo "## Install latest version of Docker"
-echo "## This will remove any previous versions of Docker"
+echo "## This will remove any outdated versions of Docker"
 echo "##"
 echo "## -------------------------"
 echo
@@ -58,7 +58,6 @@ if [[ $(apt-key fingerprint 0EBFCD88) ]]; then
 
     apt update
     apt install docker-ce -y
-    sleep 30
     # Set User as docker admin
     groupadd docker
     usermod -aG docker $USER
