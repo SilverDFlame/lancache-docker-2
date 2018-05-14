@@ -388,8 +388,7 @@ fi
 
 
 if [ -f "$lc_base_folder/temp/unbound/unbound.conf" ]; then
-    mv ./lancache/unbound/unbound.conf ./lancache/unbound/unbound.conf.bak
-	yes | cp $lc_base_folder/temp/unbound/unbound.conf ./lancache/unbound/unbound.conf
+    cp $lc_base_folder/temp/unbound/unbound.conf ./docker-unbound/unbound.conf
 	else
 	echo Could not find "$lc_base_folder/temp/unbound/unbound.conf". Exiting.
 	exit 1
