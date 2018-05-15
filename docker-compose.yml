@@ -5,9 +5,6 @@ services:
     image: lan-cache/unbound
     build: ./docker-unbound
     network_mode: "host"
-    ports:
-    - "53:53"
-    - "53:53/udp"
     restart: unless-stopped
     stdin_open: true
     tty: true
