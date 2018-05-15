@@ -7,10 +7,6 @@ RUN apk add --update unbound bash bind-tools && \
 # Expose udp port
 EXPOSE 53/udp
 
-COPY unbound.conf /etc/unbound/unbound.conf
-COPY root.hints /var/unbound/etc/root.hints
-COPY root.key /var/unbound/etc/root.key
-
 RUN unbound-checkconf
 
 CMD ["unbound"]

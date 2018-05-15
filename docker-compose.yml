@@ -8,6 +8,10 @@ services:
     ports:
     - "53:53"
     - "53:53/udp"
+    volumes:
+    - ./docker-unbound/root.hints:/var/unbound/etc/root.hints
+    - ./docker-unbound/root.key:/var/unbound/etc/root.key
+    - ./docker-unbound/unbound.conf:/etc/unbound/unbound.conf
     restart: unless-stopped
     stdin_open: true
     tty: true
