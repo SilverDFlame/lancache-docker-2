@@ -1,11 +1,12 @@
 FROM alpine:latest
 
 # Install unbound
-RUN apk add --update unbound bash bind-tools && \
+RUN apk add --update unbound ; \
     rm -rf /tmp/* /var/tmp/* /var/cache/apk/*
 
-# Expose udp port
-EXPOSE 53/udp
+COPY unbound.conf /etc/unbound/unbound.conf
+COPY root.hints /etc/unbound/root.hints
+COPY root.key /etc/unbound/root.key
 
 RUN unbound-checkconf
 
